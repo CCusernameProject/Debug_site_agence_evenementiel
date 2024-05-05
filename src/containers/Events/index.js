@@ -40,21 +40,12 @@ const EventList = () => {
       ) : (
         <>
           <h3 className="SelectTitle">Catégories</h3>
-          <Select
-            selection={Array.from(typeList)}
-            onChange={(value) => (value ? changeType(value) : changeType(null))}
-          />
+          <Select selection={Array.from(typeList)} onChange={(value) => (value ? changeType(value) : changeType(null))}/>
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
-                  <EventCard
-                    onClick={() => setIsOpened(true)}
-                    imageSrc={event.cover}
-                    title={event.title}
-                    date={new Date(event.date)}
-                    label={event.type}
-                  />
+                  <EventCard onClick={() => setIsOpened(true)} imageSrc={event.cover} title={event.title} date={new Date(event.date)} label={event.type} />
                 )}
               </Modal>
             ))}
