@@ -24,8 +24,11 @@ export const DataProvider = ({ children }) => {
     try {
       const fetchData = await api.loadData()
       setData(fetchData);
-      const fetchLast = fetchData.events[fetchData.events.length - 1]
-      setLast(fetchLast)
+      const getLastEvent = () => {
+        fetchData.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return fetchData.events[fetchData.events.length - 1];
+      };      
+      setLast(getLastEvent())
     } catch (err) {
       setError(err);
     }
